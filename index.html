@@ -1,36 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyFetch - Weather Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SkyFetch Weather Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="description" content="SkyFetch - simple weather dashboard using OpenWeatherMap API">
 </head>
-
 <body>
-    <div class="container">
-        <h1>🌤️ SkyFetch</h1>
-        <p class="tagline">Your Personal Weather Dashboard</p>
 
-        <div class="search-box">
-            <input type="text" id="city-input" placeholder="Enter city name">
-            <button id="search-btn">Search</button>
+    <div class="container">
+        <h1>SkyFetch 🌤️</h1>
+        <p class="note">Enter a city name to check the weather</p>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <input 
+                    id="cityInput" 
+                    type="text" 
+                    placeholder="Enter city name (e.g., London, Paris, Tokyo)" 
+                    aria-label="City search" 
+                    class="search-input"
+                />
+                <button id="searchBtn" type="button" class="search-button">Search</button>
+            </div>
         </div>
 
-        <div id="weather-display">
-            <h2 id="city" class="city-name"></h2>
-            <div id="temperature" class="temperature"></div>
-            <div id="description" class="description"></div>
-            <img id="icon" class="weather-icon" src="" alt="" style="display: none;">
-            <p class="loading" style="display: none;">Loading weather data...</p>
+        <!-- API Key Input (Optional, for testing) -->
+        <details class="api-key-section">
+            <summary>Advanced: Add API Key</summary>
+            <input 
+                id="apiKeyInput" 
+                type="password" 
+                placeholder="OpenWeatherMap API key" 
+                aria-label="API key" 
+                class="api-key-input"
+            />
+        </details>
+
+        <!-- Recent Searches Section -->
+        <div id="recent-searches-section" class="recent-searches-section" style="display: none;">
+            <h3>Recent Searches</h3>
+            <div id="recent-searches-container" class="recent-searches-container"></div>
+            <button id="clearHistoryBtn" class="clear-history-btn">Clear History</button>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorContainer" class="error-container" style="display: none;">
+            <p id="error" class="error"></p>
+        </div>
+
+        <!-- Weather Card -->
+        <div id="weather-card" class="weather-card" role="region" aria-label="Current weather">
+            <h2 id="city">—</h2>
+            <p id="temperature"></p>
+            <p id="description"></p>
+            <img id="icon" alt="weather icon" />
         </div>
     </div>
 
     <!-- Axios CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <!-- Your JavaScript -->
     <script src="app.js"></script>
 </body>
 
